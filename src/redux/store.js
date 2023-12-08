@@ -28,13 +28,14 @@ function* fetchAllMovies() {
 function* getMovie(action) {
   try {
     const movieID = action.payload;
-    console.log("Getting movie with ID:", movieID);
     const movie = yield axios.get(`/api/movies/${movieID}`);
+    console.log('getMovie got a movie from the server:', movie.data);
 
     yield put({
       type: 'SET_MOVIE',
       payload: movie.data
     });
+
   } catch (error) {
     console.log('getMovie ERROR:', error);
   }
@@ -63,6 +64,15 @@ const movieID = (state = '', action) => {
   }
 }
 
+const movie = (state = '', action) => {
+  switch(action.type) {
+    case 'SET_MOVIE':
+      return action.payload;
+    default:
+      return state;
+  }
+}
+
 // Used to store the movie genres
 // ONLY IN STRETCH
 const genres = (state = [], action) => {
@@ -79,6 +89,7 @@ const storeInstance = createStore(
   combineReducers({
     movies,
     movieID,
+    movie,
     genres,
   }),
   // Add sagaMiddleware to our store

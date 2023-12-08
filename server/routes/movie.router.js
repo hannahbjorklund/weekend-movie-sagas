@@ -32,7 +32,8 @@ router.get('/:id', (req, res) => {
 
   pool.query(query, sqlValues)
     .then(result => {
-      res.send(result.rows);
+      // We are only sending over one result so take the first row
+      res.send(result.rows[0]);
     })
     .catch(err => {
       console.log("Error in GET movie by ID:", err);
