@@ -25,8 +25,10 @@ function* fetchAllMovies() {
 }
 
 // Get a single movie
-function* getMovie(movieID) {
+function* getMovie(action) {
   try {
+    const movieID = action.payload;
+    console.log("Getting movie with ID:", movieID);
     const movie = yield axios.get(`/api/movies/${movieID}`);
 
     yield put({
@@ -51,9 +53,10 @@ const movies = (state = [], action) => {
   }
 }
 
-const movie = (state = '', action) => {
+// Stores the id of the movie for the details page
+const movieID = (state = '', action) => {
   switch (action.type) {
-    case 'SET_MOVIE':
+    case 'SET_MOVIE_ID':
       return action.payload;
     default:
       return state;
@@ -75,7 +78,7 @@ const genres = (state = [], action) => {
 const storeInstance = createStore(
   combineReducers({
     movies,
-    movie,
+    movieID,
     genres,
   }),
   // Add sagaMiddleware to our store

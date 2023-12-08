@@ -13,9 +13,17 @@ function MovieList() {
     dispatch({ type: 'FETCH_MOVIES' });
   }, []);
 
-  const navigateToDetails = () => {
+  const handleClick = (id) => {
+    // Take the id of the movie and store it in redux
+    dispatch({
+      type: 'SET_MOVIE_ID',
+      payload: id
+    })
+    
     history.push('/details');
   }
+
+  
 
   return (
     <main>
@@ -25,7 +33,7 @@ function MovieList() {
           return (
             <div data-testid='movieItem' key={movie.id}>
               <h3>{movie.title}</h3>
-              <img onClick={navigateToDetails} data-testid='toDetails' src={movie.poster} alt={movie.title}/>
+              <img onClick={() => handleClick(movie.id)} data-testid='toDetails' src={movie.poster} alt={movie.title}/>
             </div>
           );
         })}
