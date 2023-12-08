@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool')
 
+// FOR STRETCH
 router.get('/', (req, res) => {
   // Add query to get all genres
   res.sendStatus(500)
