@@ -23,6 +23,20 @@ function* fetchAllMovies() {
   }
 }
 
+// Get a single movie
+function* getMovie() {
+  try {
+    const movie = yield axios.get(`/api/movies/${movieID}`);
+
+    yield put({
+      type: 'GET_MOVIE',
+      payload: movie.data
+    });
+  } catch (error) {
+    console.log('getMovie ERROR:', error);
+  }
+}
+
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
 

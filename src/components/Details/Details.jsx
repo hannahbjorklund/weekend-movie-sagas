@@ -7,9 +7,19 @@ export default function Details(){
         history.push('/');
     }
 
+    
+
+
     return (
         <div data-testid='movieDetails'>
             <button onClick={navigateToHome} data-testid='toList'>Back to Movie List ←</button>
+            {/* Should show :
+            - Poster
+            - Title
+            - Description
+            - Genres
+            For the clicked movie
+             */}
         </div>
     )
 }
