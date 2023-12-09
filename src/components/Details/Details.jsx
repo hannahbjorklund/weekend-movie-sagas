@@ -37,8 +37,8 @@ export default function Details() {
         <p>{movie.description}</p>
         <h3>Genres:</h3>
         <ul>
-          {movie.genres.map((x) => {
-            return <li>{x.name}</li>
+          {movie.genres && movie.genres.map((x) => {
+            return <li key={x.id}>{x.name}</li>
           })}
         </ul>
       </div>
