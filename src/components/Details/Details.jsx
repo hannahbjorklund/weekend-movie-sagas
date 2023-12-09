@@ -9,14 +9,16 @@ export default function Details() {
     getMovie();
   }, []);
 
-  // Get the movieID and movie reducers
+  // Get the movieID and movie from redux
   const movieID = useSelector((store) => store.movieID);
   const movie = useSelector((store) => store.movie);
 
+  // Navigate the user to the MovieList page on button click
   const navigateToHome = () => {
     history.push("/");
   };
 
+  // Dispatch to getMovies in sagas
   const getMovie = () => {
     dispatch({
       type: "GET_MOVIE",

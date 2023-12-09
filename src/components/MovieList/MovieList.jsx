@@ -5,25 +5,26 @@ import './MovieList.css'
 
 function MovieList() {
 
-  const dispatch = useDispatch();
-  const movies = useSelector(store => store.movies);
   const history = useHistory();
+  const dispatch = useDispatch();
+  
+  // Grab list of movies from redux
+  const movies = useSelector(store => store.movies);
 
   useEffect(() => {
     dispatch({ type: 'FETCH_MOVIES' });
   }, []);
 
+  // Take the id of the clicked movie and store it in redux,
+  //  then navigate to the details page
   const handleClick = (id) => {
-    // Take the id of the movie and store it in redux
     dispatch({
       type: 'SET_MOVIE_ID',
       payload: id
     })
-    
+
     history.push('/details');
   }
-
-  
 
   return (
     <main>
