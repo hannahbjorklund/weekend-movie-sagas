@@ -31,7 +31,6 @@ export default function Details() {
       <button onClick={navigateToHome} data-testid="toList">
         Back to Movie List ←
       </button>
-
       <div>
         <img src={movie.poster} />
         <h1>{movie.title}</h1>

@@ -27,10 +27,12 @@ function* fetchAllMovies() {
 // Get a single movie
 function* getMovie(action) {
   try {
+    // Grab the movie ID from the payload
     const movieID = action.payload;
+    // GET request to movies at a specific ID
     const movie = yield axios.get(`/api/movies/${movieID}`);
     console.log('getMovie got a movie from the server:', movie.data);
-
+    // Set value of movie reducer
     yield put({
       type: 'SET_MOVIE',
       payload: movie.data
@@ -44,7 +46,7 @@ function* getMovie(action) {
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
 
-// Used to store movies returned from the server
+// Movies reducer to store movies returned from the server
 const movies = (state = [], action) => {
   switch (action.type) {
     case 'SET_MOVIES':
@@ -64,6 +66,7 @@ const movieID = (state = '', action) => {
   }
 }
 
+// Reducer stores the single movie for the details page
 const movie = (state = '', action) => {
   switch(action.type) {
     case 'SET_MOVIE':

@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool')
 
-// Router to get ALL movies
+// Router to get ALL movies from the database in alphabetical order by title
 router.get('/', (req, res) => {
   const query = `
     SELECT * FROM "movies"
@@ -19,21 +19,45 @@ router.get('/', (req, res) => {
 
 });
 
-// Get a specific movie by ID
+// Get a specific movie by ID from the db
 router.get('/:id', (req, res) => {
   const movieID = req.params.id;
 
   const query = `
-    SELECT * FROM "movies"
-      WHERE "id" = $1;
+  SELECT "movies"."id", "movies"."title", "movies"."poster", "movies"."description", "movies_genres"."genre_id", "genres"."name"
+	FROM "movies" 
+	JOIN "movies_genres"
+	ON "movies"."id" = "movies_genres"."movie_id"
+	JOIN "genres"
+	ON "genres"."id" = "movies_genres"."genre_id"
+	WHERE "movies"."id" = $1;
   `;
 
   const sqlValues = [movieID];
 
   pool.query(query, sqlValues)
     .then(result => {
-      // We are only sending over one result so take the first row
-      res.send(result.rows[0]);
+      // Grab the first row of results. We have to format
+      //  the data from our joined table a bit
+      const firstResult = result.rows[0];
+      const results = result.rows;
+      
+      // Condensing rows into one result with an array for genres
+      let movieResult = {
+        id: firstResult.id,
+        title: firstResult.title,
+        poster: firstResult.poster,
+        description: firstResult.description,
+        genres: []
+      }
+
+      // Map through and add all genres to the movieResult object
+      results.map((x) => {
+        movieResult.genres.push({id: x.genre_id, name: x.name});
+      })
+
+      console.log("Sending movie result:", movieResult);
+      res.send(movieResult);
     })
     .catch(err => {
       console.log("Error in GET movie by ID:", err);

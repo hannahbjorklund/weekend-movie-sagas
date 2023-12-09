@@ -11,17 +11,13 @@ function App() {
         <Route path="/" exact>
           <MovieList />
         </Route>
-        
         <Route exact path="/details">
           <Details/>
         </Route>
-
         {/* Add Movie page */}
-        
       </Router>
     </div>
   );
 }
-
 
 export default App;
