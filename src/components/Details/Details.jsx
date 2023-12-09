@@ -35,6 +35,12 @@ export default function Details() {
         <img src={movie.poster} />
         <h1>{movie.title}</h1>
         <p>{movie.description}</p>
+        <h3>Genres:</h3>
+        <ul>
+          {movie.genres.map((x) => {
+            return <li>{x.name}</li>
+          })}
+        </ul>
       </div>
     </div>
   );
