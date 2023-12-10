@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 export default function Details() {
   const history = useHistory();
   const dispatch = useDispatch();
+  
   useEffect(() => {
     getMovie();
   }, []);
@@ -37,9 +38,10 @@ export default function Details() {
         <p>{movie.description}</p>
         <h3>Genres:</h3>
         <ul>
-          {movie.genres && movie.genres.map((x) => {
-            return <li key={x.id}>{x.name}</li>
-          })}
+          {movie.genres &&
+            movie.genres.map((x) => {
+              return <li key={x.id}>{x.name}</li>;
+            })}
         </ul>
       </div>
     </div>

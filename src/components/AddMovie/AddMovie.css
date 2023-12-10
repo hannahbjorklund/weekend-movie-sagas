@@ -19,6 +19,7 @@ input{
 
 .description{
     height: 5rem;
+    
 }
 
 select{
@@ -27,5 +28,10 @@ select{
     margin-bottom: 1rem;
     margin-top: 0.5rem;
     text-align: center;
+}
+
+.formButton{
+    width: 10vw;
+    margin-left: 20vw;
 }
 
