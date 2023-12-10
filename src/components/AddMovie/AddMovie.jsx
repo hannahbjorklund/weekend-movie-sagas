@@ -1,8 +1,21 @@
+import { useEffect } from 'react';
 import './AddMovie.css';
+import { useSelector, useDispatch } from 'react-redux';
 
 export default function AddMovie(){
 
-    const [titleInput, setTitleInput]
+    const dispatch = useDispatch();
+    // Get the genres reducer
+    const genres = useSelector(store => store.genres);
+    useEffect(() => {getGenres();}, []);
+
+    const getGenres = () => {
+        dispatch({
+            type: 'GET_GENRES'
+        })
+    }
+
+    console.log("Got some genres:", genres);
 
     return (
         <>

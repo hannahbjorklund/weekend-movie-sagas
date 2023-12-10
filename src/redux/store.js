@@ -8,6 +8,7 @@ import axios from 'axios';
 function* rootSaga() {
   yield takeEvery('FETCH_MOVIES', fetchAllMovies);
   yield takeLatest('GET_MOVIE', getMovie);
+  yield takeEvery('GET_GENRES', getGenres);
 }
 
 function* fetchAllMovies() {
@@ -40,6 +41,21 @@ function* getMovie(action) {
 
   } catch (error) {
     console.log('getMovie ERROR:', error);
+  }
+}
+
+// Get all the genres from the server
+function* getGenres() {
+  try {
+    const genresResponse = yield axios.get('/api/genres');
+    console.log("Got genres. GenresResponse:", genresResponse);
+    // Set genres reducer
+    yield put({
+      type: 'SET_GENRES',
+      payload: genresResponse.data
+    });
+  } catch (error) {
+    console.log("Error in getGenres:", error);
   }
 }
 
@@ -77,7 +93,6 @@ const movie = (state = '', action) => {
 }
 
 // Used to store the movie genres
-// ONLY IN STRETCH
 const genres = (state = [], action) => {
   switch (action.type) {
     case 'SET_GENRES':

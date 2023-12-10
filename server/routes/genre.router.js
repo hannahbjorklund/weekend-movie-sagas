@@ -2,10 +2,17 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool')
 
-// FOR STRETCH
 router.get('/', (req, res) => {
   // Add query to get all genres
-  res.sendStatus(500)
+  const query = `SELECT * FROM "genres";`
+  pool.query(query)
+  .then((result) => {
+    res.send(result.rows);
+  })
+  .catch((error) => {
+    console.log("Error in GET /api/genres:", error);
+    res.sendStatus(500)
+  })
 });
 
 module.exports = router;
