@@ -1,0 +1,28 @@
+.detailsPoster {
+    height: 32rem;
+    width: auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.detailsPage{
+    display: flex;
+    border: 1px solid black;
+    justify-content: center;
+    margin-right: 1rem;
+    margin-left: 1rem;
+}
+
+.leftHalf{
+    width: 50%;
+    margin-left: 3rem;
+}
+
+.rightHalf{
+    width: 50%;
+    margin-right: 3rem;
+}
+
+.backButton {
+    margin: 0.7rem;
+}

@@ -31,7 +31,7 @@ function MovieList() {
       <section className="movies">
         {movies.map((movie) => {
           return (
-            <div data-testid="movieItem" key={movie.id}>
+            <div className='movieItem' data-testid="movieItem" key={movie.id}>
               <h3>{movie.title}</h3>
               <img
                 onClick={() => handleClick(movie.id)}
