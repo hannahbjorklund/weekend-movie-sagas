@@ -33,7 +33,6 @@ function* getMovie(action) {
     const movieID = action.payload;
     // GET request to movies at a specific ID
     const movie = yield axios.get(`/api/movies/${movieID}`);
-    console.log('getMovie got a movie from the server:', movie.data);
     // Set value of movie reducer
     yield put({
       type: 'SET_MOVIE',
@@ -49,7 +48,6 @@ function* getMovie(action) {
 function* getGenres() {
   try {
     const genresResponse = yield axios.get('/api/genres');
-    console.log("Got genres. GenresResponse:", genresResponse);
     // Set genres reducer
     yield put({
       type: 'SET_GENRES',
@@ -60,7 +58,7 @@ function* getGenres() {
   }
 }
 
-function* addMovie() {
+function* addMovie(action) {
   try {
     const newMovie = action.payload;
     // POST request

@@ -1,16 +1,15 @@
 header {
-    background-color: black;
-    padding: 1rem;
-    margin: 0;
+  background-color: black;
+  padding: 1rem;
+  margin: 0;
 }
 
-.title{
-    margin: 0;
-    color: white;
-    font-size: xxx-large;
+.title {
+  margin: 0;
+  color: white;
+  font-size: xxx-large;
 }
 
-.nav{
-    color: white;
+.nav {
+  color: white;
 }
-
